@@ -30,7 +30,7 @@ export const PostsSlice = createSlice({
     clearPosts: state => {
       return {
         ...state,
-        posts: [],
+        items: [],
       };
     },
   },
