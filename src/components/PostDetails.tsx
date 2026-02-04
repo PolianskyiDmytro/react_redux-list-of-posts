@@ -11,9 +11,11 @@ import {
 } from '../features/commentsSlice';
 
 export const PostDetails: React.FC = () => {
-  const { comments, loaded, hasError } = useAppSelector(
-    state => state.comments,
-  );
+  const {
+    items: comments,
+    loaded,
+    hasError,
+  } = useAppSelector(state => state.comments);
   const { selectedPost } = useAppSelector(state => state.post);
   const dispatch = useAppDispatch();
   const [visible, setVisible] = useState(false);

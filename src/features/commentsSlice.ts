@@ -3,7 +3,7 @@ import { createComment, deleteComment, getPostComments } from '../api/comments';
 import { Comment } from '../types/Comment';
 
 export type CommentsState = {
-  comments: Comment[];
+  items: Comment[];
   loaded: boolean;
   hasError: boolean;
 };
@@ -11,7 +11,7 @@ export type CommentsState = {
 export type AddComment = Omit<Comment, 'id'>;
 
 const initialState: CommentsState = {
-  comments: [],
+  items: [],
   loaded: true,
   hasError: false,
 };
@@ -62,7 +62,7 @@ const CommentsSlice = createSlice({
       .addCase(fetchCommentsAsync.fulfilled, (state, action) => {
         return {
           ...state,
-          comments: action.payload,
+          items: action.payload,
           loaded: true,
         };
       })
@@ -74,7 +74,7 @@ const CommentsSlice = createSlice({
         };
       })
       .addCase(addCommentAsync.fulfilled, (state, action) => {
-        state.comments.push(action.payload);
+        state.items.push(action.payload);
       })
       .addCase(addCommentAsync.rejected, state => {
         return {
@@ -85,7 +85,7 @@ const CommentsSlice = createSlice({
       .addCase(deleteCommentAsync.fulfilled, (state, action) => {
         return {
           ...state,
-          comments: state.comments.filter(c => c.id !== action.payload),
+          items: state.items.filter(c => c.id !== action.payload),
         };
       })
       .addCase(deleteCommentAsync.rejected, state => {

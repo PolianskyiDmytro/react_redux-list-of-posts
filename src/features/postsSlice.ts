@@ -3,13 +3,13 @@ import { Post } from '../types/Post';
 import { getUserPosts } from '../api/posts';
 
 export type PostsState = {
-  posts: Post[];
+  items: Post[];
   loaded: boolean;
   hasError: boolean;
 };
 
 const initialState: PostsState = {
-  posts: [],
+  items: [],
   loaded: true,
   hasError: false,
 };
@@ -45,7 +45,7 @@ export const PostsSlice = createSlice({
       .addCase(fetchPostsAsync.fulfilled, (state, action) => {
         return {
           ...state,
-          posts: action.payload,
+          items: action.payload,
           loaded: true,
         };
       })

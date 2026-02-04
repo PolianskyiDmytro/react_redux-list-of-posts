@@ -15,9 +15,13 @@ import { clearPost } from './features/selectedPostSlice';
 import { fetchUsersAsync } from './features/usersSlice';
 
 export const App: React.FC = () => {
-  const { posts, loaded, hasError } = useAppSelector(state => state.posts);
+  const {
+    items: posts,
+    loaded,
+    hasError,
+  } = useAppSelector(state => state.posts);
   const { author } = useAppSelector(state => state.author);
-  const { selectedPost } = useAppSelector(state => state.post);
+  const { selectedPost } = useAppSelector(state => state.selectedPost);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
