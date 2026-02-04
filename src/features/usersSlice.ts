@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from '../types/User';
 import { getUsers } from '../api/users';
 
-const initialState: User[] = [];
+export const initialState: User[] = [];
 
 export const fetchUsersAsync = createAsyncThunk('users/getUsers', async () => {
   const arr = await getUsers();

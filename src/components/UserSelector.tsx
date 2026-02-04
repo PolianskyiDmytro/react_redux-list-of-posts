@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { fetchUsersAsync } from '../features/usersSlice';
-import { AuthorState, set } from '../features/authorSlice';
+import { set } from '../features/authorSlice';
 
 export const UserSelector: React.FC = () => {
   // `users` are loaded from the API, so for the performance reasons
   // we load them once in the `UsersContext` when the `App` is opened
   // and now we can easily reuse the `UserSelector` in any form
   const users = useAppSelector(state => state.users);
-  const author: AuthorState = useAppSelector(state => state.author);
+  const { author } = useAppSelector(state => state.author);
   const dispatch = useAppDispatch();
   const [expanded, setExpanded] = useState(false);
-
-  useEffect(() => {
-    dispatch(fetchUsersAsync());
-  }, []);
 
   useEffect(() => {
     if (!expanded) {
@@ -55,7 +50,7 @@ export const UserSelector: React.FC = () => {
             setExpanded(current => !current);
           }}
         >
-          <span>{author ? author?.name : 'Choose a user'}</span>
+          <span>{author?.name || 'Choose a user'}</span>
 
           <span className="icon is-small">
             <i className="fas fa-angle-down" aria-hidden="true" />
