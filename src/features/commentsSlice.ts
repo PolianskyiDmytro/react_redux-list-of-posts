@@ -70,6 +70,7 @@ const CommentsSlice = createSlice({
         return {
           ...state,
           hasError: true,
+          loaded: true,
         };
       })
       .addCase(addCommentAsync.fulfilled, (state, action) => {

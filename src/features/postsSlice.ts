@@ -53,6 +53,7 @@ export const PostsSlice = createSlice({
         return {
           ...state,
           hasError: true,
+          loaded: true,
         };
       });
   },
