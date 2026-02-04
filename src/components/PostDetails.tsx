@@ -55,12 +55,16 @@ export const PostDetails: React.FC = () => {
   // effect can return only a function but not a Promise
   */
 
-  const addComment = ({ name, email, body }: CommentData) => {
+  const addComment = ({ name, email, body }: CommentData): Promise<void> => {
     if (!selectedPost) {
-      return;
+      return Promise.resolve();
     }
 
-    dispatch(addCommentAsync({ name, email, body, postId: selectedPost.id }));
+    return dispatch(
+      addCommentAsync({ name, email, body, postId: selectedPost.id }),
+    )
+      .unwrap()
+      .then(() => {});
   };
 
   return (
